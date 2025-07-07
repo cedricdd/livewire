@@ -1,11 +1,14 @@
 <?php
 
+use App\Livewire\Search;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('search', Search::class)->name('search');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
