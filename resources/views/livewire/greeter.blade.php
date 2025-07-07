@@ -12,9 +12,9 @@
         <div class="mt-2">
             <select
                 class="border rounded-lg block w-full p-2.5 bg-black/60 border-gray-600 placeholder-gray-400 focus:border-blue-500"
-                wire:model.fill.defer="greeting">
-                @foreach ($greetings as $greeting)
-                    <option value="{{ $greeting }}">{{ $greeting }}</option>
+                wire:model.defer="greeting">
+                @foreach ($greetings as $item)
+                    <option value="{{ $item }}">{{ $item }}</option>
                 @endforeach
             </select>
         </div>
