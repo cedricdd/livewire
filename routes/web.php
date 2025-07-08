@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Livewire\Search;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -8,7 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('search', Search::class)->name('search');
+Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show')->where('article', '[0-9]+');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
