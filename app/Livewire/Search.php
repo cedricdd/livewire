@@ -11,6 +11,8 @@ class Search extends Component
     public string $search = '';
     public Collection $articles;
 
+    protected $listeners = ['search:clear' => 'clear'];
+
     public function rules(): array
     {
         return [
@@ -32,7 +34,7 @@ class Search extends Component
         $this->articles = Article::where('title', 'like', '%' . $this->search . '%')->orderBy('title', 'asc')->get();
     }   
 
-    public function clearSearch(): void
+    public function clear(): void
     {
         $this->search = '';
         $this->articles = collect();

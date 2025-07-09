@@ -13,7 +13,7 @@
     @yield('styles')
 </head>
 
-<body class="bg-dark text-white p-6 w-full min-h-screen">
+<body class="bg-dark text-white p-6 w-full min-h-screen" x-data x-on:click="$dispatch('search:clear')">
     <header class="w-full text-sm mb-6 not-has-[nav]:hidden">
         @if (Route::has('login'))
             <nav class="flex items-center justify-end gap-4">
@@ -41,11 +41,16 @@
     <main class="w-full transition-opacity opacity-100 duration-750 starting:opacity-0 mt-12">
         @yield('content')
     </main>
-    </div>
 
     @livewireScripts
 
     @yield('scripts')
+
+    <script>
+        document.addEventListener('search:clear', function() {
+            console.log('Search cleared');
+        });
+    </script>
 </body>
 
 </html>
