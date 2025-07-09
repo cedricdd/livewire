@@ -18,7 +18,8 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => fake()->realText(50),
-            'content' => fake()->realText(1500),
+            'content' => fake()->realText(5000),
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
 }

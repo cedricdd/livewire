@@ -16,25 +16,34 @@
 <body class="bg-dark text-white p-6 w-full min-h-screen" x-data x-on:click="$dispatch('search:clear')">
     <header class="w-full text-sm mb-6 not-has-[nav]:hidden">
         @if (Route::has('login'))
-            <nav class="flex items-center justify-end gap-4">
-                @auth
-                    <a href="{{ url('/dashboard') }}"
+            <nav class="flex justify-between flex-wrap">
+                <div class="my-1">
+                    <a href="{{ route('home') }}" wire:navigate
                         class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                        Dashboard
+                        Home
                     </a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 border border-transparent hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
-                        Log in
-                    </a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
+                    @livewire('search')
+                </div>
+                <div class="my-1">
+                    @auth
+                        <a href="{{ url('/dashboard') }}"
                             class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                            Register
+                            Dashboard
                         </a>
-                    @endif
-                @endauth
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="inline-block px-5 py-1.5 border border-transparent hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+                            Log in
+                        </a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                Register
+                            </a>
+                        @endif
+                    @endauth
+                </div>
             </nav>
         @endif
     </header>
@@ -47,7 +56,7 @@
     @yield('scripts')
 
     <script>
-        document.addEventListener('search:clear', function() {
+        document.addEventListener('search:clear', function(event) {
             console.log('Search cleared');
         });
     </script>

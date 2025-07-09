@@ -1,14 +1,12 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Livewire\ArticleIndex;
 use App\Livewire\Search;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
+Route::get('/', ArticleIndex::class)->name('home');
 Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show')->where('article', '[0-9]+');
 
 Route::view('dashboard', 'dashboard')
