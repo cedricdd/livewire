@@ -13,7 +13,7 @@
     @yield('styles')
 </head>
 
-<body class="bg-dark text-white p-6 w-full min-h-screen" x-data x-on:click="$dispatch('search:clear')">
+<body class="bg-dark text-white p-6 w-full min-h-screen">
     <header class="w-full text-sm mb-6 not-has-[nav]:hidden">
             <nav class="flex justify-between flex-wrap">
                 <div class="my-1">
@@ -21,7 +21,6 @@
                         class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
                         Home
                     </a>
-                    @livewire('search')
                 </div>
                 <div class="my-1">
                     @auth
@@ -46,18 +45,12 @@
             </nav>
     </header>
     <main class="w-full transition-opacity opacity-100 duration-750 starting:opacity-0 mt-12">
-        @yield('content')
+        {{ $slot }}
     </main>
 
     @livewireScripts
 
     @yield('scripts')
-
-    <script>
-        document.addEventListener('search:clear', function(event) {
-            console.log('Search cleared');
-        });
-    </script>
 </body>
 
 </html>
