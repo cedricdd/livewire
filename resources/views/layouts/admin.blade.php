@@ -17,20 +17,11 @@
     <header class="w-full text-sm mb-6 not-has-[nav]:hidden">
         <nav class="flex justify-between flex-wrap">
             <div class="my-1">
-                <a href="{{ route('home') }}" wire:navigate
-                    class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                    Home
-                </a>
-                <a href="{{ route('create-article') }}" wire:navigate
-                    class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                    Create Article
-                </a>
+                <x-nav-button route="home">Home</x-nav-button>
             </div>
             <div class="my-1">
-                <a href="{{ route('dashboard') }}" wire:navigate
-                    class="inline-block px-5 py-1.5 border border-[#3E3E3A] hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                    Dashboard
-                </a>
+                <x-nav-button route="create-article">Create Article</x-nav-button>
+                <x-nav-button route="dashboard">Dashboard</x-nav-button>
             </div>
         </nav>
     </header>

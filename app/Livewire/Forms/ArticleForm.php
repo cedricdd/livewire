@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Forms;
 
+use Livewire\Form;
 use App\Models\Article;
-use Livewire\Attributes\Title;
 
-class CreateArticle extends AdminComponent
+class ArticleForm extends Form
 {
     public string $title = '';
     public string $content = '';
@@ -17,7 +17,7 @@ class CreateArticle extends AdminComponent
         ];
     }
 
-    public function createArticle(): void
+    public function create(): void
     {
         $this->validate();
 
@@ -27,13 +27,5 @@ class CreateArticle extends AdminComponent
         $article->save();
 
         session()->flash('message', 'Article created successfully.');
-    
-        $this->redirect(route('dashboard'), navigate: true);
-    }
-
-    #[Title('Create Article')]
-    public function render()
-    {
-        return view('livewire.create-article');
     }
 }
