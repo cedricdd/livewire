@@ -8,7 +8,9 @@
             <p class="text-gray-400 mt-1">{{ $article->created_at->format('F j, Y') }}</p>
             <p class="text-gray-400 mt-2 text-justify">{{ str($article->content)->words(50) }}</p>
             <div class="flex justify-end">
-                <button wire:click="delete({{ $article->id }})" wire:confirm="Are you sure you want to delete this article?"
+                <a href="{{ route('edit-article', $article->id) }}"
+                    class="border border-blue-500 rounded-sm px-2 py-1 m-1 bg-blue-600 hover:bg-blue-800 cursor-pointer">Edit</a>
+                    <button wire:click="delete({{ $article->id }})" wire:confirm="Are you sure you want to delete this article?"
                     class="border border-red-500 rounded-sm px-2 py-1 m-1 bg-red-600 hover:bg-red-800 cursor-pointer">Delete</button>
             </div>
 

@@ -10,7 +10,7 @@ class ArticleCreate extends AdminComponent
 {
     public ArticleForm $form;
 
-    public function createArticle(): void
+    public function create(): void
     {
         $this->form->create();
     
@@ -20,6 +20,6 @@ class ArticleCreate extends AdminComponent
     #[Title('Create Article')]
     public function render()
     {
-        return view('livewire.create-article');
+        return view('livewire.article-form')->with(['action' => 'create']);
     }
 }
