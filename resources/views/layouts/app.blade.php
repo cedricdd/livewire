@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livewire</title>
+    <title>{{ $title ?? config('app.name') }}</title>
 
     @vite(['resources/js/app.js'])
 
@@ -46,7 +46,7 @@
             </nav>
     </header>
     <main class="w-full transition-opacity opacity-100 duration-750 starting:opacity-0 mt-12">
-        @yield('content')
+        {{ $slot }}
     </main>
 
     @livewireScripts
