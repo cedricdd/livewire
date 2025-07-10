@@ -5,17 +5,23 @@ namespace App\Livewire\Forms;
 use Livewire\Form;
 use App\Models\Article;
 
+const FIELDS = [
+    'title' => 'string|required|max:255|min:3',
+    'content' => 'string|required|min:100',
+    'published' => 'boolean|required',
+    'notification' => 'string|required|in:none,email,sms',
+];
+
 class ArticleForm extends Form
 {
     public ?Article $article = null;
     public string $title = '';
     public string $content = '';
+    public bool $published = false;
+    public string $notification = 'none';
 
     public function rules(): array {
-        return [
-            'title' => 'required|string|max:255|min:3',
-            'content' => 'required|string|min:100',
-        ];
+        return FIELDS;
     }
 
     public function create(): void
@@ -23,8 +29,9 @@ class ArticleForm extends Form
         $this->validate();
 
         $article = new Article();
-        $article->title = $this->title;
-        $article->content = $this->content;
+        
+        foreach(FIELDS as $field => $filler) $article->{$field} = $this->{$field};
+
         $article->save();
 
         session()->flash('message', 'Article created successfully.');
@@ -33,8 +40,8 @@ class ArticleForm extends Form
     public function setArticle(Article $article): void
     {
         $this->article = $article;
-        $this->title = $article->title;
-        $this->content = $article->content;
+
+        foreach(FIELDS as $field => $filler) $this->{$field} = $article->{$field};
     }   
 
     public function update(): void
@@ -42,8 +49,8 @@ class ArticleForm extends Form
         $this->validate();
 
         if ($this->article) {
-            $this->article->title = $this->title;
-            $this->article->content = $this->content;
+            foreach(FIELDS as $field => $filler) $this->article->{$field} = $this->{$field};
+
             $this->article->save();
         }
 
