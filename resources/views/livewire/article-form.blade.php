@@ -19,25 +19,35 @@
             @enderror
         </div>
 
-        <div class="mb-4 flex items-center gap-x-2">
-            <input type="checkbox" id="published" wire:model.boolean="form.published">
-            <label for="published">Published</label>
+        <div class="mb-4">
+            <div class="flex items-center gap-x-2">
+                <input type="checkbox" id="published" wire:model.boolean="form.published">
+                <label for="published">Published</label>
+            </div>
+            @error('form.published')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="mb-4 flex items-center gap-x-2">
-            <p class="font-bold">Notification:</p>
-            <div>
-                <input type="radio" id="notification_email" value="email" wire:model="form.notification">
-                <label for="notification_email">Email</label>
+        <div class="mb-4">
+            <div class="flex items-center gap-x-2">
+                <p class="font-bold">Notification:</p>
+                <div>
+                    <input type="radio" id="notification_email" value="email" wire:model="form.notification">
+                    <label for="notification_email">Email</label>
+                </div>
+                <div>
+                    <input type="radio" id="notification_sms" value="sms" wire:model="form.notification">
+                    <label for="notification_sms">SMS</label>
+                </div>
+                <div>
+                    <input type="radio" id="notification_none" value="none" wire:model="form.notification">
+                    <label for="notification_none">None</label>
+                </div>
             </div>
-            <div>
-                <input type="radio" id="notification_sms" value="sms" wire:model="form.notification">
-                <label for="notification_sms">SMS</label>
-            </div>
-            <div>
-                <input type="radio" id="notification_none" value="none" wire:model="form.notification">
-                <label for="notification_none">None</label>
-            </div>
+            @error('form.notification')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <button type="submit"
