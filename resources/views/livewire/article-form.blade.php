@@ -66,8 +66,11 @@
             @enderror
         </div>
 
-        <button type="submit"
-            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md cursor-pointer">{{ ucwords($action) }}
-            Article</button>
+        <x-buttons.blue type="submit">
+            {{ ucwords($action) }} Article
+        </x-buttons.blue>
+        <x-link-button.white href="{{ route('dashboard') }}">
+            Cancel
+        </x-link-button.white>
     </form>
 </div>
