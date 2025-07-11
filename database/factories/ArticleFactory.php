@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
             'title' => fake()->realText(50),
             'content' => fake()->realText(5000),
             'published' => true,
-            'notification' => fake()->randomElement(['none', 'email', 'sms']),
+            'notifications' => fake()->randomElements(['push', 'email', 'sms'], random_int(0, 3)),
             'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }

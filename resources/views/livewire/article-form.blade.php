@@ -31,21 +31,37 @@
 
         <div class="mb-4">
             <div class="flex items-center gap-x-2">
-                <p class="font-bold">Notification:</p>
+                <p class="font-bold">Allow Notifications</p>
                 <div>
-                    <input type="radio" id="notification_email" value="email" wire:model="form.notification">
-                    <label for="notification_email">Email</label>
+                    <input type="radio" id="yes_notifications" value="true" wire:model.boolean="form.allowNotifications">
+                    <label for="yes_notifications">Yes</label>
                 </div>
                 <div>
-                    <input type="radio" id="notification_sms" value="sms" wire:model="form.notification">
-                    <label for="notification_sms">SMS</label>
-                </div>
-                <div>
-                    <input type="radio" id="notification_none" value="none" wire:model="form.notification">
-                    <label for="notification_none">None</label>
+                    <input type="radio" id="no_notifications" value="false" wire:model.boolean="form.allowNotifications">
+                    <label for="no_notifications">No</label>
                 </div>
             </div>
-            @error('form.notification')
+            @error('form.allowNotifications')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-4" x-show="$wire.form.allowNotifications">
+            <div>
+                <div>
+                    <input type="checkbox" id="notification_email" value="email" wire:model="form.notifications">
+                    <label for="notification_email" class="ml-1.5">Email</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="notification_sms" value="sms" wire:model="form.notifications">
+                    <label for="notification_sms" class="ml-1.5">SMS</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="notification_push" value="push" wire:model="form.notifications">
+                    <label for="notification_push" class="ml-1.5">Push</label>
+                </div>
+            </div>
+            @error('form.notifications')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>

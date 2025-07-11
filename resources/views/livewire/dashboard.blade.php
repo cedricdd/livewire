@@ -5,8 +5,10 @@
             <a wire:navigate.hover href="{{ route('articles.show', $article->id) }}">
                 <h2 class="text-xl font-bold group-hover:underline">{{ $article->title }}</h2>
             </a>
-            <p class="text-gray-400 mt-1">{{ $article->created_at->format('F j, Y') }}{{ !$article->published ? " -- Not Published Yet!" : "" }}</p>
-            <p class="text-gray-400 mt-1">Notificaion: {{ $article->notification }}</p>
+            <p class="text-gray-400 mt-1">{{ $article->created_at->format('F j, Y') }}{!! !$article->published ? " -- <i>Not Published Yet!</i>" : "" !!}</p>
+            <p class="text-gray-400 mt-1">
+                Notification: {{ $article->notifications ? implode(', ', array_map('strtoupper', $article->notifications)) : 'None' }}
+            </p>
             <p class="text-gray-400 mt-2 text-justify">{{ str($article->content)->words(50) }}</p>
             <div class="flex justify-end">
                 <a href="{{ route('edit-article', $article->id) }}"

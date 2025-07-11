@@ -6,10 +6,10 @@ use Livewire\Form;
 use App\Models\Article;
 
 const FIELDS = [
-    'title' => 'string|required|max:255|min:3',
-    'content' => 'string|required|min:100',
-    'published' => 'boolean|required',
-    'notification' => 'string|required|in:none,email,sms',
+    'title' => 'required|bail|string|max:255|min:3',
+    'content' => 'required|bail|string|min:100',
+    'published' => 'required|boolean',
+    'notifications' => 'sometimes|bail|array|max:3|in:push,email,sms',
 ];
 
 class ArticleForm extends Form
@@ -18,7 +18,8 @@ class ArticleForm extends Form
     public string $title = '';
     public string $content = '';
     public bool $published = false;
-    public string $notification = 'none';
+    public ?array $notifications = [];
+    public bool $allowNotifications = false;
 
     public function rules(): array {
         return FIELDS;
@@ -29,6 +30,8 @@ class ArticleForm extends Form
         $this->validate();
 
         $article = new Article();
+
+        if(!$this->allowNotifications) $this->notifications = [];
         
         foreach(FIELDS as $field => $filler) $article->{$field} = $this->{$field};
 
@@ -42,6 +45,8 @@ class ArticleForm extends Form
         $this->article = $article;
 
         foreach(FIELDS as $field => $filler) $this->{$field} = $article->{$field};
+
+        $this->allowNotifications = !empty($article->notifications);
     }   
 
     public function update(): void
@@ -49,6 +54,8 @@ class ArticleForm extends Form
         $this->validate();
 
         if ($this->article) {
+            if(!$this->allowNotifications) $this->notifications = [];
+
             foreach(FIELDS as $field => $filler) $this->article->{$field} = $this->{$field};
 
             $this->article->save();
