@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -14,4 +15,9 @@ class Article extends Model
         'published' => 'boolean',
         'notifications' => 'array', 
     ];
+
+    public function scopeUnPublished(Builder $query)
+    {
+        $query->where('published', false);
+    }
 }

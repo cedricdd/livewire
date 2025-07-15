@@ -1,4 +1,11 @@
 <div class="m-auto w-full max-w-[900px] px-4 mb-6">
+    <div id="top"></div>
+
+    <div class="mb-4 flex justify-end">
+        <x-buttons.white wire:click="setShowAll(1)" :disable="$showAll">Show All Articles</x-buttons.white>
+        <x-buttons.white wire:click="setShowAll(0)" :disable="!$showAll">Show UnPublished ({{ $unPublishedCount }})</x-buttons.white>
+    </div>
+
     @foreach ($articles as $article)
         <div class="mb-6 group block bg-white/10 hover:bg-white/20 border border-transparent hover:border-white rounded-sm p-4"
             wire:key="article-{{ $article->id }}">
@@ -20,5 +27,5 @@
         </div>
     @endforeach
 
-    {{ $articles->links() }}
+    {{ $articles->links(data: ['scrollTo' => "div#top"]) }}
 </div>
