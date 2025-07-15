@@ -3,30 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\Article;
-use Livewire\Attributes\Title;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Session;
+use Illuminate\Database\Query\Builder;
 
 class Dashboard extends AdminComponent
 {
     use WithPagination;
 
+    #[Session(key: 'showAllArticlesDashboard')]
     public bool $showAll = true;
     
     public function delete(Article $article): void
     {
         $article->delete();
+
+        session()->flash('message', 'Article deleted successfully!');
     }
 
     #[Title('Dashboard')]
     public function render()
     {
-        $articles = $this->showAll
-            ? Article::latest()->paginate(10)
-            : Article::unPublished()->latest()->paginate(10);
+        $articles = Article::latest();
+        
+        if(!$this->showAll) $articles->unPublished();
 
         return view('livewire.dashboard')->with([
             'title' => 'Dashboard',
-            'articles' => $articles,
+            'articles' => $articles->paginate(10, pageName: 'articles-page'),
             'unPublishedCount' => Article::unPublished()->count(),
         ]);
     }
@@ -34,6 +39,6 @@ class Dashboard extends AdminComponent
     public function setShowAll(bool $showAll): void
     {
         $this->showAll = $showAll;
-        $this->resetPage();
+        $this->resetPage(pageName: 'articles-page');
     }
 }

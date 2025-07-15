@@ -6,6 +6,12 @@
         <x-buttons.white wire:click="setShowAll(0)" :disable="!$showAll">Show UnPublished ({{ $unPublishedCount }})</x-buttons.white>
     </div>
 
+    @session('message')
+        <div>
+            {{ session('message') }}
+        </div>
+    @endsession
+
     @foreach ($articles as $article)
         <div class="mb-6 group block bg-white/10 hover:bg-white/20 border border-transparent hover:border-white rounded-sm p-4"
             wire:key="article-{{ $article->id }}">

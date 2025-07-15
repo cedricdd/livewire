@@ -37,7 +37,7 @@ class ArticleForm extends Form
 
         $article->save();
 
-        session()->flash('message', 'Article created successfully.');
+        session()->flash('message', 'Article created successfully!');
     }
 
     public function setArticle(Article $article): void
@@ -61,6 +61,6 @@ class ArticleForm extends Form
             $this->article->save();
         }
 
-        session()->flash('message', 'Article updated successfully.');
+        session()->flash('message', 'Article updated successfully!');
     }
 }
