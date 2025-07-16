@@ -18,7 +18,6 @@ class ArticleForm extends Form
     public ?array $notifications = [];
     public bool $allowNotifications = false;
     public ?object $photo = null;
-    public string $photo_path = '';
 
     public function rules(): array
     {

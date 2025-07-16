@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use App\HandlesPhotoUpload;
 use Livewire\WithFileUploads;
 use App\Livewire\Forms\ArticleForm;
 
 class ArticleEdit extends AdminComponent
 {
     use WithFileUploads;
+    use HandlesPhotoUpload;
 
     public ArticleForm $form;
 
