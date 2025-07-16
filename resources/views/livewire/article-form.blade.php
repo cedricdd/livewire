@@ -37,10 +37,11 @@
                 <div>
                     <input type="file" id="photo" wire:model="form.photo"
                         class="mt-1 block w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white focus:outline-none focus:ring focus:ring-blue-500">
-                        <div wire:loading.delay wire:target="form.photo">Uploading...</div>
+                    <div wire:loading.delay.500ms wire:target="form.photo">Uploading...</div>
                     @if ($form->photo)
                         <div class="my-2">
-                            <img class="max-w-[400px] max-h-[400px]" src="{{ $form->photo->temporaryUrl() }}" alt="Preview" />
+                            <img class="max-w-[400px] max-h-[400px]" src="{{ $form->photo->temporaryUrl() }}"
+                                alt="Preview" />
                         </div>
                     @elseif ($form->article?->photo_path)
                         <div class="my-2">
@@ -108,7 +109,7 @@
                 @enderror
             </div>
 
-            <x-buttons.blue type="submit" disabled wire:dirty.attr.remove="disabled" wire:loading.attr="disabled">
+            <x-buttons.blue type="submit">
                 {{ ucwords($action) }} Article
             </x-buttons.blue>
             <x-link-button.white href="{{ route('dashboard') }}">
