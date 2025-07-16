@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('content');
             $table->boolean('published')->default(false);
             $table->string('notifications')->nullable();
+            $table->string('photo_path')->nullable();
             $table->timestamps();
         });
     }

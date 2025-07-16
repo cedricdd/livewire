@@ -7,7 +7,7 @@
     </div>
 
     @session('message')
-        <div>
+        <div class="bg-green-800 font-bold p-3 rounded mb-4">
             {{ session('message') }}
         </div>
     @endsession
@@ -16,8 +16,13 @@
         <div class="mb-6 group block bg-white/10 hover:bg-white/20 border border-transparent hover:border-white rounded-sm p-4"
             wire:key="article-{{ $article->id }}">
             <a wire:navigate.hover href="{{ route('articles.show', $article->id) }}">
-                <h2 class="text-xl font-bold group-hover:underline">{{ $article->title }}</h2>
+                <h2 class="text-xl font-bold group-hover:underline">{{ $article->title }} ({{ $article->id }})</h2>
             </a>
+            @if($article->photo_path)
+                <div class="w-[300px] h-[300px] flex items-center">
+                    <img class="max-w-full max-h-full my-2" loading="lazy" src="{{ $article->photo }}" alt="Article Cover" />
+                </div>
+            @endif
             <p class="text-gray-400 mt-1">{{ $article->created_at->format('F j, Y') }}{!! !$article->published ? ' -- <i>Not Published Yet!</i>' : '' !!}</p>
             <p class="text-gray-400 mt-1">
                 Notification:

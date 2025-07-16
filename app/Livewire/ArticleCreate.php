@@ -5,9 +5,12 @@ namespace App\Livewire;
 use App\Models\Article;
 use Livewire\Attributes\Title;
 use App\Livewire\Forms\ArticleForm;
+use Livewire\WithFileUploads;
 
 class ArticleCreate extends AdminComponent
 {
+    use WithFileUploads;
+
     public ArticleForm $form;
 
     public function create(): void
