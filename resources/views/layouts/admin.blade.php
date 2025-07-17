@@ -18,10 +18,11 @@
         <nav class="flex justify-between flex-wrap">
             <div class="my-1">
                 <x-nav-button route="home">Home</x-nav-button>
+                <x-nav-button route="dashboard">Dashboard</x-nav-button>
             </div>
             <div class="my-1">
                 <x-nav-button route="create-article">Create Article</x-nav-button>
-                <x-nav-button route="dashboard">Dashboard</x-nav-button>
+                <x-nav-button route="logout">Logout</x-nav-button>
             </div>
         </nav>
     </header>

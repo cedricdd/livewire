@@ -21,7 +21,13 @@
                 @livewire('search')
             </div>
             <div class="my-1">
-                <x-nav-button route="dashboard">Dashboard</x-nav-button>
+                @auth
+                    <x-nav-button route="dashboard">Dashboard</x-nav-button>
+                    <x-nav-button route="logout">Logout</x-nav-button>
+                @endauth
+                @guest
+                    <x-nav-button route="login">Login</x-nav-button>
+                @endguest
             </div>
         </nav>
         <div class="text-center mt-2 text-3xl bg-red-500 py-3 rounded-md" wire:offline>
