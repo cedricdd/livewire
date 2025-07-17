@@ -24,6 +24,9 @@
                 <x-nav-button route="dashboard">Dashboard</x-nav-button>
             </div>
         </nav>
+        <div class="text-center mt-2 text-3xl bg-red-500 py-3 rounded-md" wire:offline>
+            You are offline!
+        </div>
     </header>
     <main class="w-full transition-opacity opacity-100 duration-750 starting:opacity-0 mt-12">
         {{ $slot }}

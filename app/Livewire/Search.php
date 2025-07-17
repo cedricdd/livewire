@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use Livewire\Attributes\Isolate;
 use Livewire\Component;
 
+#[Isolate]
 class Search extends Component
 {
      public string $search = '';

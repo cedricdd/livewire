@@ -89,7 +89,7 @@
                 @enderror
             </div>
 
-            <div class="mb-4" x-show="$wire.form.allowNotifications">
+            <div class="mb-4" x-show="$wire.form.allowNotifications" wire:transition.duration.400ms>
                 <div>
                     <div>
                         <input type="checkbox" id="notification_email" value="email" wire:model="form.notifications">
